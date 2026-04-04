@@ -17,7 +17,7 @@ services:
       retries: 5
 
   backend:
-    build: ./backend
+    image: nguyenthao1192/suomi-backend
     restart: unless-stopped
     env_file: ./backend/.env
     depends_on:
@@ -29,10 +29,7 @@ services:
       - "host.docker.internal:host-gateway" # reach Ollama on the host
 
   frontend:
-    build:
-      context: ./frontend
-      args:
-        NEXT_PUBLIC_API_URL: https://yki.duckdns.org
+    image: nguyenthao1192/suomi-frontend
     restart: unless-stopped
     ports:
       - "3000:3000"
