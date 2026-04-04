@@ -33,7 +33,7 @@ def verify_session_token(token: str) -> str | None:
 async def login_google():
     params = {
         "client_id": settings.google_client_id,
-        "redirect_uri": "http://localhost:8000/auth/callback/google",
+        "redirect_uri": f"{settings.backend_url}/auth/callback/google",
         "response_type": "code",
         "scope": "openid email profile",
         "access_type": "offline",
@@ -51,7 +51,7 @@ async def google_callback(code: str, db: AsyncSession = Depends(get_db)):
                 "code": code,
                 "client_id": settings.google_client_id,
                 "client_secret": settings.google_client_secret,
-                "redirect_uri": "http://localhost:8000/auth/callback/google",
+                "redirect_uri": f"{settings.backend_url}/auth/callback/google",
                 "grant_type": "authorization_code",
             },
         )
