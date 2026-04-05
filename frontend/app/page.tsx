@@ -8,7 +8,7 @@ export default function LoginPage() {
           Practice Finnish for the YKI language proficiency exam. Speaking, writing, and vocabulary.
         </p>
         <a
-          href="http://localhost:8000/auth/login/google"
+          href={`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}/auth/login/google`}
           className="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium py-3 px-6 rounded-lg transition-colors shadow-sm"
         >
           <svg viewBox="0 0 24 24" className="w-5 h-5">

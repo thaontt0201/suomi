@@ -34,7 +34,7 @@ export default function Navigation() {
         ))}
       </div>
       <a
-        href="http://localhost:8000/auth/logout"
+        href={`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}/auth/logout`}
         className="text-sm text-gray-500 hover:text-red-500"
       >
         Sign out
