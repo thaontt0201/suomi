@@ -5,7 +5,7 @@ from app.config import settings
 
 async def generate(prompt: str, model: str | None = None) -> str:
     model = model or settings.ollama_model_generate
-    async with httpx.AsyncClient(timeout=120.0) as client:
+    async with httpx.AsyncClient(timeout=600.0) as client:
         resp = await client.post(
             f"{settings.ollama_base_url}/api/generate",
             json={"model": model, "prompt": prompt, "stream": False},
