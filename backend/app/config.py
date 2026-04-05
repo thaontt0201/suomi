@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     secret_key: str
     frontend_url: str = "http://localhost:3000"
     backend_url: str = "http://localhost:8000"
+    production: bool = False
 
     ollama_base_url: str = "http://localhost:11434"
     ollama_model_generate: str = "qwen2.5"

@@ -80,7 +80,7 @@ async def google_callback(code: str, db: AsyncSession = Depends(get_db)):
 
     token = create_session_token(str(user.id))
     response = RedirectResponse(f"{settings.frontend_url}/dashboard")
-    response.set_cookie("session", token, httponly=True, samesite="lax", max_age=60 * 60 * 24 * 7)
+    response.set_cookie("session", token, httponly=True, samesite="lax", secure=settings.production, max_age=60 * 60 * 24 * 7)
     return response
 
 
