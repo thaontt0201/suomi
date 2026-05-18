@@ -2,7 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "standalone",
-  /* config options here */
+  async redirects() {
+    return [
+      { source: "/speaking", destination: "/practice/speaking/topics", permanent: false },
+      { source: "/writing", destination: "/practice/writing/topics", permanent: false },
+    ];
+  },
 };
 
 export default nextConfig;

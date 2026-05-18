@@ -1,5 +1,9 @@
 export type Level = "A2" | "B1" | "B2";
 export type SpeakingType = "kertominen" | "keskustelu" | "tilanne" | "mielipide";
+/** Speaking task kinds available in predefined practice pool (no keskustelu). */
+export type SpeakingTaskKind = "kertominen" | "tilanne" | "mielipide";
+export type PracticeSkill = "speaking" | "writing";
+export type PracticeTopic = SpeakingTopic;
 export type SpeakingTopic =
   | "Minä ja taustani"
   | "Koti ja asuminen"
@@ -11,6 +15,8 @@ export type SpeakingTopic =
   | "Ympäristö"
   | "Yhteiskunta";
 export type WritingType = "informal" | "formal" | "mielipide";
+/** Matches existing writing modes. */
+export type WritingTaskKind = WritingType;
 
 export interface User {
   id: string;
@@ -95,3 +101,30 @@ export interface HistoryItem {
   feedback: Record<string, unknown> | null;
   created_at: string;
 }
+
+export interface PracticeSpeakingQuestion {
+  id: string;
+  skill: "speaking";
+  topic: PracticeTopic;
+  taskKind: SpeakingTaskKind;
+  title: string;
+  instructions: string;
+  prompt: string;
+  hints: string[];
+  prep_time_seconds: number;
+  speak_time_seconds: number;
+}
+
+export interface PracticeWritingQuestion {
+  id: string;
+  skill: "writing";
+  topic: PracticeTopic;
+  taskKind: WritingTaskKind;
+  title: string;
+  instructions: string;
+  prompt: string;
+  min_words: number;
+  max_words: number;
+}
+
+export type PracticeQuestion = PracticeSpeakingQuestion | PracticeWritingQuestion;

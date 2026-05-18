@@ -36,10 +36,15 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-2 gap-4">
           {[
-            { href: "/speaking", icon: "🎤", title: "Speaking Practice", desc: "Record and get AI feedback" },
-            { href: "/writing", icon: "✍️", title: "Writing Practice", desc: "Write and get evaluated" },
+            {
+              href: "/practice",
+              icon: "🎯",
+              title: "Practice",
+              desc: "Speaking & writing from the question pool",
+            },
             { href: "/vocabulary", icon: "📚", title: "Vocabulary", desc: "Flashcards and quizzes" },
             { href: "/progress", icon: "📊", title: "Progress", desc: "Track your improvements" },
+            { href: "/history", icon: "🕘", title: "History", desc: "Past sessions" },
           ].map((item) => (
             <Link
               key={item.href}
@@ -54,6 +59,16 @@ export default function DashboardPage() {
             </Link>
           ))}
         </div>
+        <p className="text-sm text-gray-400 mt-8">
+          Advanced:{" "}
+          <Link href="/speaking-ai" className="text-blue-600 hover:underline">
+            AI speaking
+          </Link>
+          {" · "}
+          <Link href="/writing-ai" className="text-blue-600 hover:underline">
+            AI writing
+          </Link>
+        </p>
       </main>
     </>
   );
