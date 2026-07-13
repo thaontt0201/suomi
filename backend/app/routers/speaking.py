@@ -57,9 +57,9 @@ async def evaluate_speaking(
         audio_bytes = await audio[0].read()
         full_transcript = await whisper.transcribe(audio_bytes, audio[0].filename or "audio.webm")
         prompt = ollama.speaking_evaluate_prompt(full_transcript, task_type, level, task_prompt)
-
+    print('ket qua : ', full_transcript)
     data = await ollama.generate_json(prompt, model="mistral")
-
+    print('data', data)
     result = PracticeResult(
         id=uuid.uuid4(),
         user_id=current_user.id,

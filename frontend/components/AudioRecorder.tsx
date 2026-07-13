@@ -6,7 +6,10 @@ interface AudioRecorderProps {
   onStop: (blob: Blob) => void;
 }
 
-export default function AudioRecorder({ maxSeconds, onStop }: AudioRecorderProps) {
+export default function AudioRecorder({
+  maxSeconds,
+  onStop,
+}: AudioRecorderProps) {
   const [state, setState] = useState<"idle" | "recording" | "done">("idle");
   const [elapsed, setElapsed] = useState(0);
   const mediaRef = useRef<MediaRecorder | null>(null);
@@ -35,13 +38,21 @@ export default function AudioRecorder({ maxSeconds, onStop }: AudioRecorderProps
     setElapsed(0);
     timerRef.current = setInterval(() => {
       setElapsed((s) => {
-        if (s + 1 >= maxSeconds) { stop(); return s + 1; }
+        if (s + 1 >= maxSeconds) {
+          stop();
+          return s + 1;
+        }
         return s + 1;
       });
     }, 1000);
   }
 
-  useEffect(() => () => { if (timerRef.current) clearInterval(timerRef.current); }, []);
+  useEffect(
+    () => () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    },
+    [],
+  );
 
   const remaining = Math.max(0, maxSeconds - elapsed);
 
@@ -55,7 +66,7 @@ export default function AudioRecorder({ maxSeconds, onStop }: AudioRecorderProps
           onClick={start}
           className="px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-full font-semibold transition-colors"
         >
-          Start Recording
+          Start Recording 1
         </button>
       )}
       {state === "recording" && (
@@ -67,7 +78,9 @@ export default function AudioRecorder({ maxSeconds, onStop }: AudioRecorderProps
         </button>
       )}
       {state === "done" && (
-        <div className="text-green-600 font-semibold">Recording saved. Processing…</div>
+        <div className="text-green-600 font-semibold">
+          Recording saved. Processing…
+        </div>
       )}
     </div>
   );

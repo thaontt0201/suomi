@@ -18,10 +18,10 @@ class Settings(BaseSettings):
     ollama_base_url: str = "http://localhost:11434"
     ollama_model_generate: str = "qwen2.5"
     ollama_model_evaluate_writing: str = "llama3.2"
-    ollama_model_evaluate_speaking: str = "mistral"
+    ollama_model_evaluate_speaking: str = "jobautomation/OpenEuroLLM-Finnish"
     ollama_model_vocabulary: str = "qwen2.5"
 
-    whisper_model: str = "base"
+    whisper_model: str = "medium"
 
 
 settings = Settings()
